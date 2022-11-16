@@ -7,8 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "Deleting Movie/List/Bookmark data ...."
-
 Bookmark.destroy_all
+Movie.destroy_all
+List.destroy_all
 
 puts "Generating new Movie/List/Bookmark data ..."
 m1 = Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
@@ -22,5 +23,6 @@ l3 = List.create(name: "My Favourite Movies")
 
 Bookmark.create(comment: "The greatest escape movie ever", list_id: l3.id, movie_id: m2.id )
 Bookmark.create(comment: "A Love movie for the ages", list_id: l3.id, movie_id: m3.id )
+Bookmark.create(comment: "Absolute Trash Movie", list_id: l1.id, movie_id: m4.id )
 
 puts "Movie/List/Bookmark data created!"

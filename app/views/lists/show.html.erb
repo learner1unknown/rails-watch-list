@@ -1,2 +1,9 @@
 <h1>Lists#show</h1>
 <p>Find me in app/views/lists/show.html.erb</p>
+
+<h1><%= @list.name %></h1>
+<% @bookmarks.each do |bookmark| %>
+<% movie = Movie.find(bookmark.movie_id) %>
+<h2><%= movie.title %> </h2>
+<p><%= bookmark.comment %> </p>
+<% end %>

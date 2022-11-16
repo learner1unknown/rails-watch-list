@@ -3,10 +3,12 @@ class ListsController < ApplicationController
 
 
   def index
-    @list = List.all
+    @lists = List.all
   end
 
   def show
+    @bookmarks = Bookmark.where(list_id: @list.id)
+    @movies = Movie.joins(:bookmarks).where(bookmarks: { list_id: @list.id })
   end
 
   def new
@@ -22,7 +24,7 @@ class ListsController < ApplicationController
   private
 
   def set_list
-    @list = List.find(params[:list_id])
+    @list = List.find(params[:id])
   end
 
   def list_params
