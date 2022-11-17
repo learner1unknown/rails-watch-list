@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: %i[show create]
+  before_action :set_list, only: %i[show]
 
   def index
     @lists = List.all
@@ -14,9 +14,12 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(task_params)
-    @list.save
-    redirect_to lists_path
+    @list = List.new(list_params)
+    if @list.save
+      redirect_to lists_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
